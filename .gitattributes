@@ -1,0 +1,2 @@
+CppProject filter=lfs diff=lfs merge=lfs -text
+CppProject/ filter=lfs diff=lfs merge=lfs -text
