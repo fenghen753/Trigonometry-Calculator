@@ -171,19 +171,11 @@ HCURSOR CTrigonometryCalculator01Dlg::OnQueryDragIcon()
 }
 
 //求n的阶乘函数
-int factorial(int n)
+LONG64 factorial(int n)    //7！就会超出int所能表示的范围，故要用long64
 {
-	int y = 1;
+	LONG64 y = 1;
 	for(int i = 1; i <= n; i++)
 		y = y * i;
-	return y;
-}
-//自定义求次幂函数
-double custom_pow(double a, int b)
-{
-	double y = 1;
-	for (int i = 0; i < b; i++)
-		y = y * a;
 	return y;
 }
 
@@ -196,7 +188,10 @@ void CTrigonometryCalculator01Dlg::OnBnClickedSinButton()
 	//根据麦克劳林展开式计算sin函数
 	m_editResult = 0;
 	for (int i = 1; i <= ORDER_NUM; i++)
+	{
 		m_editResult += pow(-1, i - 1) * pow(m_editNUM, 2 * i - 1) / factorial(2 * i - 1);
+	}		
+		
 	//m_editResult = sin(m_editNUM);
 
 	// 根据各变量的值更新相应的控件，让输出结果编辑框显示m_editResult的值   
