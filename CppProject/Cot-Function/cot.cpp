@@ -1,38 +1,51 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-// #define  PI 3.1415926
+#define  PI 3.1415926
 #define _USE_MATH_DEFINES
-#include <math.h>     // 5£¬6ĞĞ±£Ö¤Ê¹ÓÃpi£¬Ğ´³ÉM_PI
+#include <math.h>     // 5ï¼Œ6è¡Œä¿è¯ä½¿ç”¨piï¼Œå†™æˆM_PI,ä¹Ÿå¯ä»¥ç”¨å®å®šä¹‰çš„PI
 double cottest(double a)
 {	
 	int quotient=1;
-	if (a >= 180 ) 
+	// cotå‡½æ•°å‘¨æœŸä¸ºpi
+
+	//doubleå’Œfioatå‹ä¸èƒ½ç”¨%ç¬¦å·æ±‚ä½™ ï¼ï¼ æ‰€ä»¥(a - int(a) + int(a) % 180)æ˜¯ç›¸å½“ä¸ a%180  
+	if ((a - int(a) + int(a) % 180) == 0)
 	{
-		quotient = a / 180;
+	printf("ä¸èƒ½è¾“å…¥180çš„å€æ•°ï¼Œå› ä¸ºè¯¥å€¼åœ¨æ­£åˆ‡å‡½æ•°ä¸­æ˜¯æ²¡æœ‰æ„ä¹‰çš„ï¼ï¼ï¼\n\a");
+	exit(0);
+	}
+	else if (a > 180)    //doubleè½¬åŒ–æˆintï¼Œå‘ä¸‹å–æ•´
+	{
+		
+		quotient =a/180;      //è‹¥a=365.3ï¼Œåˆ™quotient=365/180=2 ï¼Œa=365.3-2*180= 5.3 
 		a = a - quotient * 180;
 	}
-	else if(a <= -180)
+	else if(a < -180)     //å‘ä¸Šå–æ•´ï¼Œå¦‚ -359.7-> 359  ,æŠ¹å»å°æ•°ç‚¹
 	{
-		quotient = a / 180;
+		quotient = a / 180;        //è‹¥a=-365.3ï¼Œåˆ™quotient=-365/180=-2 ï¼Œa=-365.3-ï¼ˆ-2ï¼‰*180 = -5.3 
 		a = a - quotient * 180;
 	}
-	else if (a == 0)
+	//åŒ–ä¸ºä¸»åŒºé—´ -90<x<90
+	if(a>=90)   
 	{
-		printf("²»ÄÜÊäÈë0£¬ÒòÎª0ÔÚÕıÇĞº¯ÊıÖĞÊÇÃ»ÓĞÒâÒåµÄ£¡£¡£¡\n\a");
-		exit(0);  //µ±ÊäÈëµÄ½Ç¶ÈÊÇ0Ê±£¬ÔòÌáÊ¾´íÎó²¢Õı³£½áÊø³ÌĞòµÄÔËĞĞ£¡
+		a = a - 180;
 	}
-	double newa = a * M_PI / 180.0;
-	//¸ù¾İcotº¯ÊıµÄÌ©ÀÕ¹«Ê½Õ¹¿ª£¬È¡Ç°ÃæµÄ4Ïî¡£
+	else if (a <= -90)
+	{
+		a = a + 180;
+	}
+	double newa = a * PI / 180.0;
+	//æ ¹æ®cotå‡½æ•°çš„æ³°å‹’å…¬å¼å±•å¼€ï¼Œå–å‰é¢çš„4é¡¹ã€‚
 	double cotx = 1.0 / newa - newa / 3.0 - pow(newa,3)/ 45 - 2 * pow(newa,5)/ 945.0;
 	return cotx;
 }
 int main()
 {
 	double x;
-	cout << "ÇëÊäÈëÒªÇóµÄÓàÇĞµÄ¶ÈÊıÖµ:";
+	cout << "è¯·è¾“å…¥è¦æ±‚çš„ä½™åˆ‡çš„åº¦æ•°å€¼:";
 	cin >> x;
-	cout << "¸ÃÓàÇĞº¯ÊıµÄÖµÊÇ£º" <<cottest(x)<<endl;
+	cout << "è¯¥ä½™åˆ‡å‡½æ•°çš„å€¼æ˜¯ï¼š" <<cottest(x)<<endl;
 	return 0;
 }
 
