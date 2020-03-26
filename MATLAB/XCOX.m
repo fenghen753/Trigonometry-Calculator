@@ -1,4 +1,5 @@
 function result = COX( x)
+x=x/180*pi;
 for n=1:999
     if (x >pi )
         x = x -2* pi;
