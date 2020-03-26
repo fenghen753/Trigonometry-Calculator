@@ -14,6 +14,7 @@ int main()
 double COS(double x)
 {
     double pi = 3.1415926;
+    x=x/180*pi;
     for (;1;)
     {
         if (x > pi)
